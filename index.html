@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="Prism Privot is a creative digital marketing agency helping brands grow through content, design, social media management, and performance advertising." />
   <meta name="keywords"
@@ -19,22 +19,18 @@
     rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     :root {
       --primary: #3450D8;
       --primary-deep: #213cb8;
       --primary-soft: rgba(52, 80, 216, 0.10);
       --bg: #F8F8F5;
       --text: #111111;
-      --muted: #555555;
+      --muted: #666666;
       --white: #ffffff;
       --border: rgba(17, 17, 17, 0.08);
       --shadow: 0 20px 60px rgba(20, 34, 90, 0.10);
@@ -42,6 +38,7 @@
       --radius: 20px;
       --container: 1240px;
       --gradient-main: linear-gradient(135deg, #3450D8 0%, #5d7cff 45%, #7fa3ff 100%);
+      --gradient-soft: linear-gradient(135deg, rgba(52, 80, 216, .18), rgba(127, 163, 255, .08));
     }
 
     html {
@@ -54,6 +51,7 @@
       color: var(--text);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     h1,
@@ -64,7 +62,7 @@
     h6,
     .brand-text {
       font-family: 'Space Grotesk', sans-serif;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
     }
 
     a {
@@ -73,24 +71,24 @@
     }
 
     .container-custom {
-      width: min(var(--container), calc(100% - 1.5rem));
+      width: min(var(--container), calc(100% - 2rem));
       margin-inline: auto;
     }
 
     .section {
-      padding: 80px 0;
+      padding: 110px 0;
       position: relative;
     }
 
     .section-sm {
-      padding: 60px 0;
+      padding: 80px 0;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: .55rem;
-      font-size: .78rem;
+      font-size: .84rem;
       font-weight: 700;
       letter-spacing: .12em;
       text-transform: uppercase;
@@ -98,8 +96,8 @@
       background: rgba(52, 80, 216, .08);
       border: 1px solid rgba(52, 80, 216, .10);
       border-radius: 999px;
-      padding: .6rem 1rem;
-      backdrop-filter: blur(4px);
+      padding: .7rem 1rem;
+      backdrop-filter: blur(12px);
     }
 
     .eyebrow::before {
@@ -112,97 +110,108 @@
     }
 
     .section-title {
-      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-size: clamp(2rem, 4vw, 3.4rem);
       font-weight: 800;
-      line-height: 1.05;
-      margin: 1rem 0 0.8rem;
+      line-height: 1.02;
+      margin: 1.1rem 0 1rem;
     }
 
     .section-subtitle {
       color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.7;
+      font-size: 1.05rem;
+      line-height: 1.8;
       max-width: 680px;
       margin: 0 auto;
     }
 
-    /* ----- NAVBAR (fully responsive) ----- */
+    /* NAVBAR */
     .navbar {
-      padding: 0.8rem 0;
-      transition: background .3s ease, box-shadow .3s ease, border-color .3s ease;
+      padding: 1rem 0;
+      transition: background .3s ease, box-shadow .3s ease, border-color .3s ease, padding .3s ease;
       border-bottom: 1px solid transparent;
     }
 
     .navbar.scrolled {
       background: rgba(248, 248, 245, .72);
       backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border-color: rgba(17, 17, 17, .06);
       box-shadow: 0 12px 34px rgba(17, 17, 17, .04);
+      padding: .78rem 0;
     }
 
     .navbar-brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 0.7rem;
+      gap: .9rem;
       font-weight: 800;
       color: var(--text) !important;
-      padding: 0;
     }
 
+    /* Logo image styling */
     .logo-img {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       object-fit: contain;
       border-radius: 12px;
       box-shadow: 0 8px 18px rgba(52, 80, 216, .18);
       background: white;
       padding: 2px;
-      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .logo-img:hover {
+      transform: scale(1.03);
     }
 
     .brand-wrap {
       display: flex;
       flex-direction: column;
-      line-height: 1.2;
+      line-height: 1;
     }
 
     .brand-title {
-      font-size: .95rem;
+      font-size: .98rem;
       font-weight: 800;
-      letter-spacing: .04em;
+      letter-spacing: .06em;
     }
 
     .brand-sub {
-      font-size: .65rem;
-      letter-spacing: .15em;
+      font-size: .72rem;
+      letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-top: .1rem;
+      margin-top: .22rem;
     }
 
     .nav-link {
       color: rgba(17, 17, 17, .78) !important;
       font-weight: 600;
-      padding: .5rem .8rem !important;
+      padding: .65rem .95rem !important;
       transition: color .25s ease;
     }
 
-    .nav-link:hover {
+    .nav-link:hover,
+    .nav-link:focus {
       color: var(--primary) !important;
     }
 
-    .btn-main {
+    .btn-main,
+    .btn-outline-main,
+    .btn-hero-secondary {
       border-radius: 999px;
       font-weight: 700;
-      padding: .75rem 1.4rem;
+      padding: .92rem 1.4rem;
+      transition: transform .28s ease, box-shadow .28s ease, background .28s ease, color .28s ease, border-color .28s ease;
+    }
+
+    .btn-main {
       background: var(--gradient-main);
       border: none;
       color: #fff;
       box-shadow: 0 18px 42px rgba(52, 80, 216, .24);
-      transition: transform .28s ease, box-shadow .28s ease;
       background-size: 180% 180%;
       animation: gradientShift 8s ease infinite;
-      white-space: nowrap;
     }
 
     .btn-main:hover {
@@ -213,14 +222,10 @@
 
     .btn-outline-main,
     .btn-hero-secondary {
-      border-radius: 999px;
-      font-weight: 700;
-      padding: .75rem 1.4rem;
       border: 1px solid rgba(17, 17, 17, .10);
       background: rgba(255, 255, 255, .7);
       color: var(--text);
-      backdrop-filter: blur(8px);
-      transition: transform .28s ease, box-shadow .28s ease, background .28s ease;
+      backdrop-filter: blur(12px);
     }
 
     .btn-outline-main:hover,
@@ -232,27 +237,39 @@
       box-shadow: var(--shadow-soft);
     }
 
-    /* ----- HERO (mobile-first) ----- */
+    /* HERO */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 100px 0 60px;
+      padding-top: 120px;
+      overflow: hidden;
       position: relative;
       isolation: isolate;
     }
 
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 180px;
+      background: linear-gradient(to bottom, rgba(248, 248, 245, 0), var(--bg));
+      z-index: -1;
+    }
+
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 3rem;
     }
 
     .hero-title {
-      font-size: clamp(2.6rem, 10vw, 5.2rem);
-      line-height: .96;
+      font-size: clamp(3rem, 7vw, 5.6rem);
+      line-height: .94;
       font-weight: 800;
-      margin: 1rem 0 1.2rem;
+      margin: 1.2rem 0 1.3rem;
+      max-width: 760px;
     }
 
     .hero-title .gradient-text {
@@ -265,32 +282,26 @@
     }
 
     .hero-subtitle {
-      font-size: 1rem;
-      line-height: 1.8;
+      font-size: 1.08rem;
+      line-height: 1.9;
       color: var(--muted);
-      max-width: 600px;
-      margin-bottom: 1.8rem;
+      max-width: 680px;
+      margin-bottom: 2rem;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-bottom: 1.8rem;
-    }
-
-    .hero-actions .btn {
-      flex: 1 1 auto;
-      min-width: 140px;
-      text-align: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
     }
 
     .hero-note {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 1.25rem;
       color: var(--muted);
-      font-size: .9rem;
+      font-size: .97rem;
     }
 
     .hero-note span {
@@ -303,64 +314,64 @@
       color: var(--primary);
     }
 
-    /* hero showcase card */
+    /* Hero showcase / card */
     .hero-showcase {
       position: relative;
+      min-height: 560px;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 420px;
     }
 
     .floating-blob {
       position: absolute;
       border-radius: 50%;
       filter: blur(10px);
-      opacity: .7;
+      opacity: .92;
       animation: floatBlob 9s ease-in-out infinite;
+      will-change: transform;
       pointer-events: none;
     }
 
     .blob-1 {
-      width: 260px;
-      height: 260px;
-      background: radial-gradient(circle at 30% 30%, rgba(127, 163, 255, .6), rgba(52, 80, 216, .12) 70%, transparent 85%);
-      top: -20px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle at 30% 30%, rgba(127, 163, 255, .8), rgba(52, 80, 216, .16) 60%, rgba(52, 80, 216, 0) 80%);
+      top: -40px;
       right: -10px;
     }
 
     .blob-2 {
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle at 30% 30%, rgba(52, 80, 216, .25), rgba(52, 80, 216, .05) 70%, transparent 85%);
-      bottom: 0;
-      left: 0;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle at 30% 30%, rgba(52, 80, 216, .42), rgba(52, 80, 216, .06) 60%, rgba(52, 80, 216, 0) 80%);
+      bottom: 10px;
+      left: 20px;
       animation-duration: 11s;
       animation-delay: -3s;
     }
 
     .blob-3 {
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle at 40% 40%, rgba(166, 190, 255, .7), rgba(127, 163, 255, .1) 70%, transparent 85%);
-      top: 80px;
-      left: -20px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle at 40% 40%, rgba(166, 190, 255, .95), rgba(127, 163, 255, .18) 55%, rgba(127, 163, 255, 0) 78%);
+      top: 120px;
+      left: 0;
       animation-duration: 13s;
       animation-delay: -1s;
     }
 
     .hero-card {
       position: relative;
-      width: 100%;
-      max-width: 500px;
+      width: min(100%, 510px);
       background: rgba(255, 255, 255, .72);
       border: 1px solid rgba(255, 255, 255, .5);
       backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border-radius: 28px;
-      box-shadow: 0 30px 70px rgba(21, 35, 92, .12);
-      padding: 1rem;
+      box-shadow: 0 30px 70px rgba(21, 35, 92, .14);
+      padding: 1.4rem;
       z-index: 2;
-      margin: 0 auto;
     }
 
     .hero-panel {
@@ -374,10 +385,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.8rem 1rem;
+      padding: 1rem 1.1rem;
       border-bottom: 1px solid rgba(17, 17, 17, .06);
       background: rgba(255, 255, 255, .8);
-      flex-wrap: wrap;
     }
 
     .dot-group {
@@ -393,42 +403,44 @@
     }
 
     .panel-badge {
-      font-size: .7rem;
+      font-size: .78rem;
       font-weight: 700;
       color: var(--primary);
       background: rgba(52, 80, 216, .08);
       border-radius: 999px;
-      padding: .4rem .7rem;
+      padding: .5rem .75rem;
     }
 
     .panel-content {
-      padding: 1rem;
+      padding: 1.1rem;
     }
 
     .mini-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1.15fr .85fr;
       gap: 1rem;
     }
 
     .metric-card {
-      padding: 1rem;
+      padding: 1.2rem;
       border-radius: var(--radius);
       background: rgba(255, 255, 255, .82);
       border: 1px solid rgba(17, 17, 17, .06);
       box-shadow: var(--shadow-soft);
+      background: linear-gradient(160deg, rgba(255, 255, 255, .95), rgba(241, 245, 255, .92));
     }
 
     .metric-card h5 {
-      font-size: 1.1rem;
+      margin: 0;
+      font-weight: 700;
     }
 
     .metric-chart {
-      height: 120px;
+      height: 180px;
       display: flex;
       align-items: flex-end;
-      gap: .5rem;
-      margin-top: 0.8rem;
+      gap: .75rem;
+      margin-top: 1rem;
     }
 
     .metric-bar {
@@ -436,7 +448,6 @@
       border-radius: 999px 999px 10px 10px;
       background: linear-gradient(180deg, rgba(127, 163, 255, .95), rgba(52, 80, 216, .88));
       animation: riseUp 1.2s ease both;
-      min-height: 10px;
     }
 
     .mini-stack {
@@ -454,24 +465,24 @@
 
     .mini-pill {
       display: inline-flex;
-      padding: .35rem .7rem;
-      font-size: .7rem;
+      padding: .45rem .7rem;
+      font-size: .78rem;
       color: var(--primary);
       background: rgba(52, 80, 216, .08);
       border-radius: 999px;
       font-weight: 700;
-      margin-bottom: .6rem;
+      margin-bottom: .75rem;
     }
 
     .signal-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: .5rem;
-      padding: .5rem 0;
+      gap: .75rem;
+      padding: .72rem 0;
       border-bottom: 1px dashed rgba(17, 17, 17, .08);
       color: var(--muted);
-      font-size: .9rem;
+      font-size: .95rem;
     }
 
     .signal-row:last-child {
@@ -480,13 +491,13 @@
     }
 
     .signal-dot {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: var(--primary);
-      box-shadow: 0 0 0 4px rgba(52, 80, 216, .12);
+      box-shadow: 0 0 0 6px rgba(52, 80, 216, .12);
       flex: 0 0 auto;
-      margin-right: .4rem;
+      margin-right: .5rem;
     }
 
     .signal-label {
@@ -497,13 +508,45 @@
     }
 
     .glass-float {
-      display: none;
+      position: absolute;
+      padding: .95rem 1rem;
+      background: rgba(255, 255, 255, .64);
+      border: 1px solid rgba(255, 255, 255, .5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 18px;
+      box-shadow: var(--shadow-soft);
+      z-index: 3;
+      animation: floatBlob 7s ease-in-out infinite;
     }
 
-    /* ABOUT */
+    .glass-float.one {
+      top: 60px;
+      right: -10px;
+    }
+
+    .glass-float.two {
+      bottom: 38px;
+      left: -8px;
+      animation-delay: -2s;
+    }
+
+    .float-label {
+      font-size: .8rem;
+      color: var(--muted);
+      margin-bottom: .3rem;
+    }
+
+    .float-value {
+      font-weight: 800;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--text);
+      letter-spacing: -.03em;
+    }
+
     .about-card {
-      padding: 1.8rem 1.2rem;
-      background: linear-gradient(180deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, .7));
+      padding: 2rem;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, .74));
       border-radius: 28px;
       border: 1px solid rgba(17, 17, 17, .06);
       box-shadow: var(--shadow);
@@ -515,74 +558,102 @@
       content: "";
       position: absolute;
       inset: auto -80px -80px auto;
-      width: 180px;
-      height: 180px;
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(127, 163, 255, .2), transparent 72%);
+      background: radial-gradient(circle, rgba(127, 163, 255, .3), rgba(127, 163, 255, 0) 72%);
       pointer-events: none;
     }
 
-    /* SERVICES & CHOOSE – fully responsive grid */
-    .services-grid,
+    .services-grid {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(5, 1fr);
+    }
+
     .choose-grid {
       display: grid;
-      gap: 1.2rem;
-      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      grid-template-columns: repeat(4, 1fr);
     }
 
     .service-card,
     .choice-card {
+      height: 100%;
       padding: 1.5rem;
       border-radius: var(--radius);
       background: rgba(255, 255, 255, .82);
       border: 1px solid rgba(17, 17, 17, .06);
       box-shadow: var(--shadow-soft);
       transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before,
+    .choice-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(52, 80, 216, .03));
+      opacity: 0;
+      transition: opacity .35s ease;
     }
 
     .service-card:hover,
     .choice-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-8px);
       box-shadow: 0 28px 50px rgba(22, 38, 99, .12);
       border-color: rgba(52, 80, 216, .14);
     }
 
+    .service-card:hover::before,
+    .choice-card:hover::before {
+      opacity: 1;
+    }
+
     .icon-wrap {
-      width: 54px;
-      height: 54px;
+      width: 58px;
+      height: 58px;
       border-radius: 18px;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, rgba(52, 80, 216, .12), rgba(127, 163, 255, .12));
       color: var(--primary);
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
+      font-size: 1.35rem;
+      margin-bottom: 1.2rem;
+      position: relative;
+      z-index: 1;
     }
 
     .service-card h3,
     .choice-card h3 {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      margin-bottom: .5rem;
+      margin-bottom: .7rem;
+      position: relative;
+      z-index: 1;
     }
 
     .service-card p,
     .choice-card p {
       color: var(--muted);
-      line-height: 1.7;
-      font-size: .95rem;
+      line-height: 1.75;
+      margin-bottom: 0;
+      position: relative;
+      z-index: 1;
+      font-size: .97rem;
     }
 
-    /* CTA */
     .cta-section {
-      padding: 70px 0;
+      padding: 90px 0;
     }
 
     .cta-card {
       position: relative;
       overflow: hidden;
       border-radius: 32px;
-      padding: 2.8rem 1.5rem;
+      padding: 4rem 2rem;
       background: linear-gradient(135deg, #2f49cf 0%, #4164ef 45%, #88adff 100%);
       box-shadow: 0 40px 90px rgba(52, 80, 216, .28);
       text-align: center;
@@ -595,45 +666,44 @@
       content: "";
       position: absolute;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 255, 255, .18), transparent 70%);
+      background: radial-gradient(circle, rgba(255, 255, 255, .26), rgba(255, 255, 255, 0) 70%);
       z-index: -1;
       animation: floatBlob 9s ease-in-out infinite;
     }
 
     .cta-card::before {
-      width: 280px;
-      height: 280px;
-      top: -100px;
-      left: -60px;
+      width: 380px;
+      height: 380px;
+      top: -140px;
+      left: -80px;
     }
 
     .cta-card::after {
-      width: 220px;
-      height: 220px;
-      right: -40px;
-      bottom: -80px;
+      width: 320px;
+      height: 320px;
+      right: -60px;
+      bottom: -120px;
       animation-delay: -3s;
     }
 
     .cta-card h2 {
-      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      font-size: clamp(2rem, 4vw, 3.5rem);
       font-weight: 800;
       margin-bottom: 1rem;
     }
 
     .cta-card p {
-      max-width: 600px;
+      max-width: 720px;
       margin: 0 auto 1.6rem;
       color: rgba(255, 255, 255, .84);
-      line-height: 1.7;
-      font-size: 1rem;
+      line-height: 1.8;
     }
 
     .cta-card .btn-main {
       background: rgba(255, 255, 255, .12);
       border: 1px solid rgba(255, 255, 255, .22);
       box-shadow: none;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(14px);
     }
 
     .cta-card .btn-main:hover {
@@ -641,34 +711,40 @@
       color: var(--primary);
     }
 
-    /* CONTACT */
     .contact-wrap {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1.05fr .95fr;
       gap: 1.5rem;
     }
 
     .contact-card {
-      padding: 1.5rem;
+      padding: 2rem;
       border-radius: var(--radius);
       background: rgba(255, 255, 255, .82);
       border: 1px solid rgba(17, 17, 17, .06);
       box-shadow: var(--shadow-soft);
+      height: 100%;
     }
 
     .contact-card h3 {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 800;
-      margin-bottom: .5rem;
+      margin-bottom: .7rem;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.6rem;
     }
 
     .form-control {
       border-radius: 16px;
       border: 1px solid rgba(17, 17, 17, .10);
-      padding: .8rem 1rem;
-      min-height: 50px;
+      padding: .95rem 1rem;
+      min-height: 54px;
+      box-shadow: none !important;
       background: rgba(255, 255, 255, .86);
-      font-size: .95rem;
     }
 
     .form-control:focus {
@@ -678,84 +754,85 @@
     }
 
     textarea.form-control {
-      min-height: 130px;
+      min-height: 150px;
       resize: vertical;
     }
 
     .contact-info-list {
       display: grid;
-      gap: 0.8rem;
-      margin-top: 1.2rem;
+      gap: 1rem;
+      margin-top: 1.6rem;
     }
 
     .info-item {
       display: flex;
-      align-items: center;
-      gap: .8rem;
-      padding: 0.8rem 1rem;
+      align-items: flex-start;
+      gap: .95rem;
+      padding: 1rem 1rem;
       border-radius: 18px;
       background: rgba(52, 80, 216, .04);
       border: 1px solid rgba(52, 80, 216, .08);
     }
 
     .info-item i {
-      width: 38px;
-      height: 38px;
+      width: 42px;
+      height: 42px;
       display: grid;
       place-items: center;
       border-radius: 14px;
       background: rgba(255, 255, 255, .88);
       color: var(--primary);
-      font-size: 1rem;
+      font-size: 1.05rem;
+      box-shadow: 0 10px 24px rgba(20, 34, 90, .06);
       flex: 0 0 auto;
     }
 
     .info-label {
-      font-size: .7rem;
+      font-size: .8rem;
       text-transform: uppercase;
-      letter-spacing: .1em;
+      letter-spacing: .12em;
       color: var(--muted);
+      margin-bottom: .25rem;
       font-weight: 700;
     }
 
     .info-value {
       font-weight: 600;
       color: var(--text);
-      word-break: break-word;
     }
 
     .social-links {
       display: flex;
-      gap: .7rem;
-      margin-top: 1rem;
+      gap: .85rem;
+      margin-top: 1.2rem;
       flex-wrap: wrap;
     }
 
     .social-links a {
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       display: grid;
       place-items: center;
       border-radius: 50%;
       background: rgba(255, 255, 255, .92);
       border: 1px solid rgba(17, 17, 17, .08);
       color: var(--primary);
-      transition: transform .3s ease, box-shadow .3s ease;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
       box-shadow: 0 12px 26px rgba(20, 34, 90, .06);
     }
 
     .social-links a:hover {
       transform: translateY(-4px);
       border-color: rgba(52, 80, 216, .18);
+      box-shadow: 0 18px 32px rgba(20, 34, 90, .08);
     }
 
-    /* FOOTER */
     footer {
-      padding: 20px 0 40px;
+      padding: 28px 0 42px;
     }
 
     .footer-card {
-      padding: 1.2rem 1.2rem;
+      padding: 1.4rem 1.5rem;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -769,24 +846,22 @@
 
     .footer-links {
       display: flex;
-      gap: 0.8rem 1.2rem;
+      gap: 1rem 1.2rem;
       flex-wrap: wrap;
       color: var(--muted);
       font-weight: 600;
-      font-size: .9rem;
     }
 
     .footer-links a:hover {
       color: var(--primary);
     }
 
-    /* back to top */
     .back-to-top {
       position: fixed;
-      right: 16px;
-      bottom: 16px;
-      width: 48px;
-      height: 48px;
+      right: 20px;
+      bottom: 20px;
+      width: 52px;
+      height: 52px;
       border: none;
       border-radius: 50%;
       display: grid;
@@ -799,13 +874,27 @@
       transform: translateY(16px);
       transition: opacity .3s ease, transform .3s ease;
       z-index: 1080;
-      font-size: 1.2rem;
     }
 
     .back-to-top.show {
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-3px);
+    }
+
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(17, 17, 17, .03) 1px, transparent 1px), linear-gradient(90deg, rgba(17, 17, 17, .03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(circle at center, black 45%, transparent 88%);
+      pointer-events: none;
+      opacity: .24;
+      z-index: 0;
     }
 
     @keyframes floatBlob {
@@ -816,7 +905,7 @@
       }
 
       50% {
-        transform: translate3d(0, -14px, 0) scale(1.04);
+        transform: translate3d(0, -18px, 0) scale(1.04);
       }
     }
 
@@ -848,143 +937,56 @@
       }
     }
 
-    /* ---------- RESPONSIVE BREAKPOINTS ---------- */
-    @media (min-width: 576px) {
-      .mini-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .choose-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (min-width: 768px) {
-      .section {
-        padding: 100px 0;
-      }
-
-      .hero-grid {
-        grid-template-columns: 1.1fr .9fr;
-        gap: 2.5rem;
-      }
-
-      .hero {
-        min-height: 100vh;
-        padding-top: 120px;
-      }
-
-      .hero-showcase {
-        min-height: 500px;
-      }
-
-      .hero-card {
-        max-width: 480px;
-      }
-
-      .glass-float {
-        display: block;
-        position: absolute;
-        padding: .8rem 1rem;
-        background: rgba(255, 255, 255, .64);
-        border: 1px solid rgba(255, 255, 255, .5);
-        backdrop-filter: blur(16px);
-        border-radius: 18px;
-        box-shadow: var(--shadow-soft);
-        z-index: 3;
-        animation: floatBlob 7s ease-in-out infinite;
-      }
-
-      .glass-float.one {
-        top: 30px;
-        right: -10px;
-      }
-
-      .glass-float.two {
-        bottom: 20px;
-        left: -10px;
-        animation-delay: -2s;
-      }
-
-      .float-label {
-        font-size: .7rem;
-        color: var(--muted);
-        margin-bottom: .2rem;
-      }
-
-      .float-value {
-        font-weight: 800;
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: .9rem;
-      }
-
+    @media (max-width: 1199.98px) {
       .services-grid {
         grid-template-columns: repeat(3, 1fr);
       }
 
       .choose-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
 
+      .hero-grid,
       .contact-wrap {
-        grid-template-columns: 1.05fr .95fr;
-      }
-
-      .cta-card {
-        padding: 4rem 2rem;
-      }
-
-      .cta-card h2 {
-        font-size: clamp(2rem, 4vw, 3.5rem);
-      }
-    }
-
-    @media (min-width: 992px) {
-      .hero-card {
-        max-width: 510px;
+        grid-template-columns: 1fr;
       }
 
       .hero-showcase {
-        min-height: 560px;
-      }
-
-      .glass-float.one {
-        top: 60px;
-        right: -10px;
-      }
-
-      .glass-float.two {
-        bottom: 38px;
-        left: -8px;
-      }
-
-      .service-card,
-      .choice-card {
-        padding: 1.8rem;
-      }
-
-      .contact-card {
-        padding: 2rem;
+        min-height: auto;
       }
     }
 
-    @media (max-width: 767px) {
-      .hero-actions .btn {
-        flex: 1 1 100%;
+    @media (max-width: 991.98px) {
+      .section {
+        padding: 90px 0;
       }
 
-      .hero-note {
+      .hero {
+        min-height: auto;
+        padding-top: 110px;
+      }
+
+      .navbar-collapse {
+        margin-top: 1rem;
+        background: rgba(255, 255, 255, .82);
+        border: 1px solid rgba(17, 17, 17, .06);
+        border-radius: 20px;
+        padding: 1rem;
+        box-shadow: var(--shadow-soft);
+      }
+    }
+
+    @media (max-width: 767.98px) {
+
+      .services-grid,
+      .choose-grid,
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
         flex-direction: column;
-        align-items: flex-start;
-        gap: .5rem;
-      }
-
-      .panel-topbar {
-        flex-direction: row;
+        align-items: stretch;
       }
 
       .btn-main,
@@ -994,53 +996,45 @@
         text-align: center;
       }
 
-      .footer-card {
+      .hero-note {
         flex-direction: column;
-        align-items: flex-start;
+        gap: .75rem;
       }
-    }
 
-    @media (max-width: 575px) {
-      .navbar-brand .brand-sub {
+      .glass-float {
         display: none;
       }
 
-      .hero-title {
-        font-size: 2.4rem;
+      .cta-card {
+        padding: 3rem 1.25rem;
       }
 
-      .section-title {
-        font-size: 1.8rem;
-      }
-
-      .cta-card h2 {
-        font-size: 1.6rem;
-      }
-
-      .info-item {
-        flex-wrap: wrap;
+      .footer-card {
+        align-items: flex-start;
       }
     }
   </style>
 </head>
 
 <body>
-
   <!-- NAVBAR -->
   <nav id="mainNav" class="navbar navbar-expand-lg fixed-top">
     <div class="container-custom">
       <div class="d-flex align-items-center justify-content-between w-100">
         <a class="navbar-brand" href="#home" aria-label="Prism Privot home">
-          <img src="logo.png" alt="Prism Privot logo" class="logo-img" width="40" height="40">
+          <!-- Logo image (replace src with your actual logo file) -->
+          <img src="logo.png" alt="Prism Privot logo" class="logo-img" width="44" height="44">
           <span class="brand-wrap">
             <span class="brand-title">PRISM PRIVOT</span>
             <span class="brand-sub">Digital Agency</span>
           </span>
         </a>
+
         <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse justify-content-end" id="navbarMenu">
           <ul class="navbar-nav align-items-lg-center gap-lg-1 ms-auto">
             <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
@@ -1057,9 +1051,11 @@
   <main>
     <!-- HERO -->
     <section id="home" class="hero">
+      <div class="grid-overlay"></div>
       <div class="floating-blob blob-1"></div>
       <div class="floating-blob blob-2"></div>
       <div class="floating-blob blob-3"></div>
+
       <div class="container-custom position-relative">
         <div class="hero-grid">
           <div data-aos="fade-up" data-aos-duration="800">
@@ -1067,42 +1063,49 @@
             <h1 class="hero-title">Creative Solutions for <span class="gradient-text">Modern Brands.</span></h1>
             <p class="hero-subtitle">We help businesses grow through creative content, impactful designs, social media
               management, and high-performing advertising campaigns.</p>
+
             <div class="hero-actions">
               <a href="#contact" class="btn btn-main">Get Started</a>
               <a href="#contact" class="btn btn-hero-secondary">Contact Us</a>
             </div>
+
             <div class="hero-note">
-              <span><i class="bi bi-check2-circle"></i> Honest, focused agency</span>
-              <span><i class="bi bi-palette2"></i> Minimal design, premium polish</span>
-              <span><i class="bi bi-lightning-charge"></i> Fast, responsive, modern</span>
+              <span><i class="bi bi-check2-circle"></i> Honest, focused agency presence</span>
+              <span><i class="bi bi-palette2"></i> Minimal design with premium polish</span>
+              <span><i class="bi bi-lightning-charge"></i> Fast, responsive, and modern</span>
             </div>
           </div>
+
           <div class="hero-showcase" data-aos="fade-up" data-aos-delay="150" data-aos-duration="800">
             <div class="glass-float one">
               <div class="float-label">Creative Direction</div>
-              <div class="float-value">Clean • Strategic</div>
+              <div class="float-value">Clean • Strategic • Premium</div>
             </div>
             <div class="glass-float two">
               <div class="float-label">Focus Areas</div>
               <div class="float-value">Content • Design • Ads</div>
             </div>
+
             <div class="hero-card">
               <div class="hero-panel">
                 <div class="panel-topbar">
-                  <div class="dot-group" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span
-                      class="dot"></span></div>
+                  <div class="dot-group" aria-hidden="true">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                  </div>
                   <span class="panel-badge">PRISM PRIVOT</span>
                 </div>
                 <div class="panel-content">
                   <div class="mini-grid">
                     <div class="metric-card">
-                      <div class="d-flex justify-content-between align-items-center gap-2">
+                      <div class="d-flex justify-content-between align-items-center gap-3">
                         <div>
                           <div class="text-uppercase small fw-semibold text-secondary-emphasis mb-1">Creative Stack
                           </div>
                           <h5>Modern brand support</h5>
                         </div>
-                        <div class="icon-wrap mb-0" style="width:46px;height:46px;border-radius:14px;"><i
+                        <div class="icon-wrap mb-0" style="width:52px;height:52px;border-radius:16px;"><i
                             class="bi bi-grid-1x2-fill"></i></div>
                       </div>
                       <div class="metric-chart" aria-hidden="true">
@@ -1116,18 +1119,24 @@
                     <div class="mini-stack">
                       <div class="mini-card">
                         <span class="mini-pill">Services</span>
-                        <div class="signal-row"><span class="signal-label"><span
-                              class="signal-dot"></span>Content</span><strong>Clear</strong></div>
-                        <div class="signal-row"><span class="signal-label"><span
-                              class="signal-dot"></span>Design</span><strong>Refined</strong></div>
-                        <div class="signal-row"><span class="signal-label"><span
-                              class="signal-dot"></span>Ads</span><strong>Focused</strong></div>
+                        <div class="signal-row">
+                          <span class="signal-label"><span class="signal-dot"></span>Content</span>
+                          <strong>Clear</strong>
+                        </div>
+                        <div class="signal-row">
+                          <span class="signal-label"><span class="signal-dot"></span>Design</span>
+                          <strong>Refined</strong>
+                        </div>
+                        <div class="signal-row">
+                          <span class="signal-label"><span class="signal-dot"></span>Ads</span>
+                          <strong>Focused</strong>
+                        </div>
                       </div>
                       <div class="mini-card">
                         <span class="mini-pill">Approach</span>
                         <h6 class="mb-2">Thoughtful digital execution</h6>
-                        <p class="mb-0 text-muted" style="line-height:1.6; font-size:.9rem;">Minimal by design,
-                          strategic by purpose, tailored for growing brands.</p>
+                        <p class="mb-0 text-muted" style="line-height:1.7;">Minimal by design, strategic by purpose, and
+                          tailored for growing brands.</p>
                       </div>
                     </div>
                   </div>
@@ -1164,28 +1173,33 @@
           <p class="section-subtitle">A focused service lineup designed for brands that want thoughtful creative
             execution without unnecessary noise.</p>
         </div>
+
         <div class="services-grid mt-5">
-          <article class="service-card" data-aos="fade-up" data-aos-delay="0">
+          <article class="service-card" data-aos="fade-up" data-aos-delay="0" data-aos-duration="700">
             <div class="icon-wrap"><i class="bi bi-pencil-square"></i></div>
             <h3>Content Writing</h3>
             <p>Clear, strategic copy that helps your brand communicate with confidence and purpose.</p>
           </article>
-          <article class="service-card" data-aos="fade-up" data-aos-delay="80">
+
+          <article class="service-card" data-aos="fade-up" data-aos-delay="80" data-aos-duration="700">
             <div class="icon-wrap"><i class="bi bi-vector-pen"></i></div>
             <h3>Editing &amp; Graphic Designing</h3>
             <p>Refined visuals and polished creative assets built to elevate how your brand is seen.</p>
           </article>
-          <article class="service-card" data-aos="fade-up" data-aos-delay="160">
+
+          <article class="service-card" data-aos="fade-up" data-aos-delay="160" data-aos-duration="700">
             <div class="icon-wrap"><i class="bi bi-instagram"></i></div>
             <h3>Social Media Management</h3>
             <p>Consistent social presence shaped with engaging content, structure, and visual direction.</p>
           </article>
-          <article class="service-card" data-aos="fade-up" data-aos-delay="240">
+
+          <article class="service-card" data-aos="fade-up" data-aos-delay="240" data-aos-duration="700">
             <div class="icon-wrap"><i class="bi bi-badge-ad"></i></div>
             <h3>Meta Ads</h3>
             <p>Campaigns designed to reach the right audience with creative that feels intentional.</p>
           </article>
-          <article class="service-card" data-aos="fade-up" data-aos-delay="320">
+
+          <article class="service-card" data-aos="fade-up" data-aos-delay="320" data-aos-duration="700">
             <div class="icon-wrap"><i class="bi bi-google"></i></div>
             <h3>Google Ads</h3>
             <p>Search-driven advertising built to capture demand and support measurable growth.</p>
@@ -1203,23 +1217,27 @@
           <p class="section-subtitle">A simple approach centered on quality creative work, thoughtful service, and
             dependable collaboration.</p>
         </div>
+
         <div class="choose-grid mt-5">
-          <article class="choice-card" data-aos="fade-up" data-aos-delay="0">
+          <article class="choice-card" data-aos="fade-up" data-aos-delay="0" data-aos-duration="700">
             <div class="icon-wrap"><i class="bi bi-lightbulb"></i></div>
             <h3>Creative Ideas</h3>
             <p>Fresh concepts shaped to fit your brand identity and communicate clearly.</p>
           </article>
-          <article class="choice-card" data-aos="fade-up" data-aos-delay="80">
+
+          <article class="choice-card" data-aos="fade-up" data-aos-delay="80" data-aos-duration="700">
             <div class="icon-wrap"><i class="bi bi-gem"></i></div>
             <h3>Professional Quality</h3>
             <p>Clean execution, strong visual standards, and thoughtful attention to detail.</p>
           </article>
-          <article class="choice-card" data-aos="fade-up" data-aos-delay="160">
+
+          <article class="choice-card" data-aos="fade-up" data-aos-delay="160" data-aos-duration="700">
             <div class="icon-wrap"><i class="bi bi-heart"></i></div>
             <h3>Personal Attention</h3>
             <p>A more focused, collaborative process with communication that feels direct and genuine.</p>
           </article>
-          <article class="choice-card" data-aos="fade-up" data-aos-delay="240">
+
+          <article class="choice-card" data-aos="fade-up" data-aos-delay="240" data-aos-duration="700">
             <div class="icon-wrap"><i class="bi bi-wallet2"></i></div>
             <h3>Affordable Solutions</h3>
             <p>Thoughtful digital support designed to be accessible for modern growing businesses.</p>
@@ -1249,6 +1267,7 @@
           <p class="section-subtitle">Use the form below to share your needs. Contact details are placed as simple
             placeholders and can be updated with your real information anytime.</p>
         </div>
+
         <div class="contact-wrap mt-5">
           <div class="contact-card" data-aos="fade-right" data-aos-duration="700">
             <h3>Send a message</h3>
@@ -1256,44 +1275,73 @@
             <form
               onsubmit="event.preventDefault(); alert('Thanks! This demo form is ready to be connected to your preferred email or backend workflow.');">
               <div class="row g-3">
-                <div class="col-12"><input type="text" class="form-control" placeholder="Name" aria-label="Name"
-                    required></div>
-                <div class="col-12"><input type="email" class="form-control" placeholder="Email" aria-label="Email"
-                    required></div>
-                <div class="col-12"><textarea class="form-control" placeholder="Message" aria-label="Message"
-                    required></textarea></div>
-                <div class="col-12"><button type="submit" class="btn btn-main w-100">Send Message</button></div>
+                <div class="col-12">
+                  <input type="text" class="form-control" placeholder="Name" aria-label="Name" required>
+                </div>
+                <div class="col-12">
+                  <input type="email" class="form-control" placeholder="Email" aria-label="Email" required>
+                </div>
+                <div class="col-12">
+                  <textarea class="form-control" placeholder="Message" aria-label="Message" required></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-main w-100">Send Message</button>
+                </div>
               </div>
             </form>
           </div>
+
           <div class="contact-card" data-aos="fade-left" data-aos-duration="700">
             <h3>Contact Details</h3>
             <p>Get in touch with us through any of the following channels.</p>
+
             <div class="contact-info-list">
-              <div class="info-item"><i class="bi bi-envelope"></i>
+
+              <!-- Email -->
+              <div class="info-item">
+                <i class="bi bi-envelope"></i>
                 <div>
                   <div class="info-label">Email</div>
-                  <div class="info-value"><a href="mailto:prismprivot@gmail.com">prismprivot@gmail.com</a></div>
+                  <div class="info-value">
+                    <a href="mailto:prismprivot@gmail.com">prismprivot@gmail.com</a>
+                  </div>
                 </div>
               </div>
-              <div class="info-item"><i class="bi bi-telephone"></i>
+
+              <!-- Phone -->
+              <div class="info-item">
+                <i class="bi bi-telephone"></i>
                 <div>
                   <div class="info-label">Phone</div>
-                  <div class="info-value"><a href="tel:+918799522703">+91 87995 22703</a></div>
+                  <div class="info-value">
+                    <a href="tel:+918799522703">+91 87995 22703</a>
+                  </div>
                 </div>
               </div>
-              <div class="info-item"><i class="bi bi-geo-alt"></i>
+
+              <!-- Location -->
+              <div class="info-item">
+                <i class="bi bi-geo-alt"></i>
                 <div>
                   <div class="info-label">Location</div>
                   <div class="info-value">Surat, Gujarat</div>
                 </div>
               </div>
+
             </div>
+
+            <!-- Social Links -->
             <div class="mt-4">
               <div class="info-label mb-2">Follow Us</div>
               <div class="social-links">
+
+                <!-- Instagram -->
                 <a href="https://instagram.com/prism.privot" target="_blank" rel="noopener noreferrer"
-                  aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                  aria-label="Instagram">
+                  <i class="bi bi-instagram"></i>
+                </a>
+
+
               </div>
             </div>
           </div>
@@ -1306,40 +1354,62 @@
     <div class="container-custom">
       <div class="footer-card" data-aos="fade-up" data-aos-duration="600">
         <div class="d-flex align-items-center gap-3">
-          <img src="logo.png" alt="Prism Privot logo" class="logo-img" width="38" height="38">
+          <img src="logo.png" alt="Prism Privot logo" class="logo-img" width="40" height="40">
           <div>
             <div class="brand-text fw-bold">PRISM PRIVOT</div>
             <div class="text-muted small">© <span id="year"></span> All rights reserved.</div>
           </div>
         </div>
-        <div class="footer-links"><a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a><a
-            href="#contact">Contact</a></div>
+
+        <div class="footer-links">
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ once: true, offset: 20 });
+    // Initialize AOS
+    AOS.init({
+      once: true,
+      offset: 30,
+    });
+
+    // Navbar scroll effect
     const nav = document.getElementById('mainNav');
     const backToTop = document.getElementById('backToTop');
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const yearEl = document.getElementById('year');
+    yearEl.textContent = new Date().getFullYear();
+
     const handleScroll = () => {
-      const scrolled = window.scrollY > 20;
+      const scrolled = window.scrollY > 24;
       nav.classList.toggle('scrolled', scrolled);
-      backToTop.classList.toggle('show', window.scrollY > 400);
+      backToTop.classList.toggle('show', window.scrollY > 500);
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Close mobile nav on link click
     document.querySelectorAll('.navbar .nav-link').forEach(link => {
       link.addEventListener('click', () => {
         const menu = document.getElementById('navbarMenu');
-        if (menu.classList.contains('show')) bootstrap.Collapse.getOrCreateInstance(menu).hide();
+        if (menu.classList.contains('show')) {
+          bootstrap.Collapse.getOrCreateInstance(menu).hide();
+        }
       });
     });
   </script>
